@@ -1,0 +1,6 @@
+.feeder{
+    @apply flex flex-row flex-wrap relative mt-16 w-full h-screen;
+
+    left: 15%;
+
+}
