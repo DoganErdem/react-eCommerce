@@ -1,27 +1,9 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
-import "./feed.css";
+import React from 'react';
 import { BiLira } from 'react-icons/bi';
-import { addList } from '../store/reducers/ListItemsSlice';
-import { useDispatch,useSelector } from 'react-redux';
 
-
-
-const Feed = () => {
-
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        axios.get('https://fakestoreapi.com/products').then(res => dispatch(addList(res.data)))    
-    }, []);
-
-    const list = useSelector(state => state.list.list);
-
+function FeedList({item}) {
     return (
-        <div className='feeder'>
-            {list.map((item) => {
-                return (
-                    <div key={item.id} className='flex flex-col relative mt-5 mr-3 w-56 h-96'>
+        <div className='flex flex-col relative mt-5 mr-3 w-56 h-96  bg-slate-100'>
                         <div className='flex w-48 h-48  justify-center items-center m-2 hover:scale-105 hover:duration-500'>
                             <img src={item.image} alt='' className='flex w-full h-full object-contain '></img>
                         </div>
@@ -33,10 +15,7 @@ const Feed = () => {
                         </div>
                         <button className='flex absolute w-full bg-slate-500 border-none hover:bg-orange-400 hover:duration-300 border-black border-2 rounded border-collapse bottom-0 h-8 justify-center items-center'>ADD CART</button>
                     </div>
-                )
-            })}
-        </div>
     );
 }
 
-export default Feed;
+export default FeedList;
