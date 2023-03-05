@@ -13,7 +13,8 @@ function FeedList({item}) {
                             <BiLira size={18} />
                             <div className='flex justify-center items-center text-center font-bold text-xl'>{item.price}</div>
                         </div>
-                        <button className='flex absolute w-full bg-slate-500 border-none hover:bg-orange-400 hover:duration-300 border-black border-2 rounded border-collapse bottom-0 h-8 justify-center items-center'>ADD CART</button>
+                        <button className='flex absolute w-full bg-slate-500 border-none hover:bg-orange-400 hover:duration-200 border-black 
+                                           border-2 rounded text-white font-semibold border-collapse bottom-0 h-8 justify-center items-center'>ADD CART</button>
                     </div>
     );
 }

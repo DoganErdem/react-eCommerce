@@ -1,11 +1,11 @@
 .leftside{
-    @apply  flex flex-col relative w-1/5 mt-16 h-80 justify-around border-gray-300 rounded-lg border-solid border-2 border-spacing-2
-    border-spacing-x-2;
+    @apply  flex flex-col relative w-1/5 mt-16 ml-10 h-80 justify-around border-gray-300 rounded-lg 
+    border-solid border-2 ;
 
-    left: 5%;
+    
 }
 
 .category{
-    @apply flex rounded relative border-cyan-700 h-10 w-11/12 inset-x-1 text-white cursor-pointer bg-slate-400 hover:border-blue-500 hover:bg-orange-400
-    justify-center items-center mt-5 hover:transition-all;
+    @apply flex rounded relative border-cyan-700 h-10 w-11/12 inset-x-1 text-white cursor-pointer bg-slate-400
+    hover:border-blue-500 hover:bg-orange-400 justify-center items-center mt-5 hover:transition-all;
 }

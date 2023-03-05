@@ -5,7 +5,7 @@ import Cart from "./component/cart/Cart";
 
 function App() {
   return (
-    <div className="flex flex-row relative w-full ">
+    <div className="flex flex-row relative w-auto ">
       <Leftside />
       <Feed />
       <Cart />
