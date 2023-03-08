@@ -43,7 +43,7 @@ const Cart = () => {
                                     text-xs font-semibold font-mono bg-amber-500 w-min h-min px-1'>{cartList.length}</span>}
                 </div>
 
-                <div className='flex-col overflow-y-auto scrollbar-hide'>
+                <div className='flex flex-col overflow-y-auto scrollbar-hide h-3/5'>
                     {cartList.map((item) =>{
                         return(
                         <CartList key={item.id} item={item} />
@@ -58,7 +58,7 @@ const Cart = () => {
                         <div className='flex text-xl font-semibold text-lime-500 items-center'><BiLira />{totalPrice}</div>
                     </div>
                     <button className='flex justify-center h-12 w-11/12 items-center text-white text-lg bg-slate-700 
-                                        hover:bg-slate-900 hover:duration-150 '>CHECKOUT</button>
+                                        hover:bg-slate-900 hover:duration-150 ' onClick={() => alert("Shopping is success")}>CHECKOUT</button>
                 </div>
             </div>
 

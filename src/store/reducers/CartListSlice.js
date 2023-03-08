@@ -5,9 +5,7 @@ const initialState = {
     cartList: [],
     selectedItem: {},
     showCart: false,
-
 }
-
 
 const cartItemSlice = createSlice({
     name: 'cartList',
@@ -19,12 +17,16 @@ const cartItemSlice = createSlice({
 
             const newItem = state.cartList.findIndex((item) => item.id === action.payload.id) 
             let newQuantity=1
-            let aaa={};
-
+            
             if(newItem >= 0){
                 newQuantity = state.cartList[newItem].quantity
                 newQuantity +=1;
-                aaa = {...state.cartList[newItem], quantity : newQuantity}
+                const newObject = {...state.cartList[newItem], quantity : newQuantity}
+                const newCartList = state.cartList.map((item) => (item.id == action.payload.id) ? newObject : item  )
+                return {
+                    ...state,
+                    cartList: newCartList
+                }
             }
 
             if (newItem === -1) {
@@ -33,13 +35,27 @@ const cartItemSlice = createSlice({
                     cartList: [...state.cartList, action.payload]
                 }
             } 
-            else {
-                let bbb = state.cartList.filter((item) => item.id !== action.payload.id)
-                let newList = [...bbb, aaa]
-                return {
-                    ...state,
-                    cartList: newList
-                }
+        },
+
+        incrementQuantity(state, action) {
+            let quantity = action.payload.quantity
+            quantity +=1
+            const newObject = {...action.payload, quantity: quantity}
+            const newCartList = state.cartList.map((item) => (item.id == action.payload.id) ? newObject : item  )
+            return {
+                ...state,
+                cartList: newCartList
+            }
+        },
+
+        decrementQuantity(state, action) {
+            let quantity = action.payload.quantity
+            quantity -=1
+            const newObject = {...action.payload, quantity: quantity}
+            const newCartList = state.cartList.map((item) => (item.id == action.payload.id) ? newObject : item  )
+            return {
+                ...state,
+                cartList: newCartList
             }
         },
 
@@ -74,6 +90,6 @@ const cartItemSlice = createSlice({
     }
 })
 
-export const { addCart, deleteCart, selectItem, showCart } = cartItemSlice.actions
+export const { addCart, deleteCart, selectItem, showCart,incrementQuantity,decrementQuantity } = cartItemSlice.actions
 
 export default cartItemSlice;

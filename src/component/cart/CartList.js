@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { BiLira } from 'react-icons/bi';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteCart } from '../../store/reducers/CartListSlice';
+import { decrementQuantity, deleteCart, incrementQuantity } from '../../store/reducers/CartListSlice';
 
 
 const CartList = ({item}) => {
@@ -15,12 +15,12 @@ const CartList = ({item}) => {
     };
     
     const incrementCount = () => {
-        setCount(count+1)
+        dispatch(incrementQuantity(item))
         
     };
 
     const decrementCount = () => {
-        setCount(count-1)
+        if(item.quantity > 1) dispatch(decrementQuantity(item))
     };
 
 
@@ -43,8 +43,8 @@ const CartList = ({item}) => {
                                        onClick={() =>deleteItem()} > X </button>
                     <div className='flex text-lime-500 justify-center items-center'><BiLira /> {item.price.toFixed(2)} </div>
                     <div className='flex bg-black flex-row w-full h-6 '>
-                        <button className='flex w-1/2 text-white justify-center items-center hover:bg-slate-900'
-                                           onClick={() => decrementCount()} >-</button>
+                        <button className={`flex w-1/2 text-white justify-center items-center ${item.quantity == 1 ? "bg-slate-900" : "bg-black"} hover:bg-slate-900`}
+                                         onClick={() => decrementCount()} >-</button>
                         <button className='flex w-1/2 right-0 text-white justify-center items-center hover:bg-slate-900'
                                            onClick={() => incrementCount()} >+</button>
                     </div>
