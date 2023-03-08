@@ -15,26 +15,25 @@ const ListItemsSlice = createSlice({
 
     reducers:{
         addList(state,action){
+            const quantity = 1
+            const newArray = action.payload.map((item) => item ={...item,quantity})
+           
             return{
-                ...state, list: action.payload
+                ...state, 
+                list: newArray
             }
         },
 
         changeCategory(state,action){
             const newList = [...state.list].filter((item) => item.category === action.payload)
-            console.log(newList);
+
             return{
-                ...state, categoryList: newList
-            }
-            
+                ...state, 
+                categoryList: newList
+            }   
         }
-   
     }
-
-
 })
 
-export const { addList,changeCategory } = ListItemsSlice.actions
-
-
+export const { addList,changeCategory } = ListItemsSlice.actions;
 export default ListItemsSlice;

@@ -1,10 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 
-const initialState ={
+const initialState = {
     cartList: [],
     selectedItem: {},
     showCart: false,
+
 }
 
 
@@ -13,37 +14,66 @@ const cartItemSlice = createSlice({
 
     initialState,
 
-    reducers:{
-        addCart(state,action){
-            return{
-                ...state, 
-                cartList : [action.payload]
-            }
-        },
+    reducers: {
+        addCart(state, action) {
 
-        deleteCart(state,action){
-                return{
+            const newItem = state.cartList.findIndex((item) => item.id === action.payload.id) 
+            let newQuantity=1
+            let aaa={};
+
+            if(newItem >= 0){
+                newQuantity = state.cartList[newItem].quantity
+                newQuantity +=1;
+                aaa = {...state.cartList[newItem], quantity : newQuantity}
+            }
+
+            if (newItem === -1) {
+                return {
                     ...state,
-                    cartList: [...state.cartList].filter((item) => item.id !== action.payload)
-                }      
-        },
-
-        selectItem(state, action){
-            return{
-                ...state, 
-                selectedItem : state.selectedItem.find((item) => item.id === action.payload)
+                    cartList: [...state.cartList, action.payload]
+                }
+            } 
+            else {
+                let bbb = state.cartList.filter((item) => item.id !== action.payload.id)
+                let newList = [...bbb, aaa]
+                return {
+                    ...state,
+                    cartList: newList
+                }
             }
         },
 
-        showCart(state, action){
-            return{
+        deleteCart(state, action) {
+            return {
                 ...state,
-                showCart: !state.showCart
+                cartList: [...state.cartList].filter((item) => item.id !== action.payload)
+            }
+        },
+
+        selectItem(state, action) {
+            return {
+                ...state,
+                selectedItem: action.payload
+            }
+        },
+
+        showCart(state, action) {
+            if (action.payload === true) {
+                return {
+                    ...state,
+                    showCart: action.payload
+                }
+            } else {
+                return {
+                    ...state,
+                    showCart: !state.showCart
+                }
             }
         }
+
     }
 })
 
-export const { addCart, deleteCart,selectItem,showCart} = cartItemSlice.actions
+export const { addCart, deleteCart, selectItem, showCart } = cartItemSlice.actions
 
 export default cartItemSlice;
