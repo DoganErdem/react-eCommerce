@@ -12,8 +12,8 @@ const Leftside = () => {
 
 
     return (
-        <div className='leftside shadow-2xl'>
-            <span className='flex relative justify-start font-bold text-lg inset-x-1'>Categories:</span>
+        <div className='leftside '>
+            <span className='flex relative justify-start font-bold text-lg inset-x-1 mob:hidden'>Categories:</span>
             <div className='category' type='button'  onClick={(e) => categoryList("men's clothing") }>Mens</div>
             <div className='category' onClick={(e) => categoryList("women's clothing") }>Womens</div>
             <div className='category' onClick={(e) => categoryList("electronics") }>Electronics</div>
